@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Citas</title>
+    <link rel="stylesheet" href="css/consucit.css">
+</head>
+<body>
+    <h1>Consultar Citas</h1>
+
+    <form>
+      <label for="filtro-nombre">Filtrar por nombre:</label>
+      <input type="text" id="filtro-nombre" name="filtro-nombre" placeholder="Nombre del paciente">
+
+      <label for="filtro-fecha">Filtrar por fecha:</label>
+      <input type="date" id="filtro-fecha" name="filtro-fecha">
+
+      <button type="submit">Buscar</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre completo</th>
+          <th>Fecha de cita</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>2023-05-15</td>
+          <td>
+            <button onclick="reimprimirReceta(1)">Reimprimir Receta</button>
+          </td>
+        </tr>
+        <tr>
+          <td>María López</td>
+          <td>2023-05-20</td>
+          <td>
+            <button onclick="reimprimirReceta(2)">Reimprimir Receta</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      function reimprimirReceta(id) {
+       
+      }
+    </script>
+</body>
+</html>
