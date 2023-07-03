@@ -46,6 +46,26 @@ def guardar():
     flash('El album fue agregado completamente')
     return redirect(url_for('index'))
 
+@app.route('/editar/<id>')
+def editar(id):
+   cursorID=mysql.connection.cursor()
+   cursorID.execute('select * from dbalbums where id= %s',(id))
+   consulID= cursorID.fetchall()
+   return render_template('EditarAlbum.html',album=consulID)
+
+@app.route('/Actualizar/<id>',methods=['POST'])
+def actualizar(id):
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/eliminar')
 def eliminar():
