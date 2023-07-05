@@ -9,11 +9,11 @@
     <h1>Album a editar: </h1>
     <br>
     <br>
-    <form action="#" method="POST">
+    <form action="/Actualizar/{{album.0}}" method="POST">
 
-        <input type="text" name ="txtTitulo" value="{{album.0.1}}">
-        <input type="text" name="txtArtista" value="{{album.0.2}}">
-        <input type="number" name="txtAnio" value="{{album.0.3}}">
+        <input type="text" name ="txtTitulo" value="{{album.1}}">
+        <input type="text" name="txtArtista" value="{{album.2}}">
+        <input type="number" name="txtAnio" value="{{album.3}}">
 
         <button type="submit">Actualizar</button>
 

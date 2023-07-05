@@ -50,13 +50,23 @@ def guardar():
 def editar(id):
    cursorID=mysql.connection.cursor()
    cursorID.execute('select * from dbalbums where id= %s',(id))
-   consulID= cursorID.fetchall()
+   consulID= cursorID.fetchone()
    return render_template('EditarAlbum.html',album=consulID)
 
 @app.route('/Actualizar/<id>',methods=['POST'])
 def actualizar(id):
 
+    if request.method == 'POST':
+        varTitulo=request.form['txtTitulo']
+        varArtist=request.form['txtArtista']
+        varanio=request.form['txtAnio']
 
+        curAct= mysql.connection.cursor()
+        curAct.execute('update dbalbums set titulo= %s, artista= %s, anio= %s where id= %s',(varTitulo,varArtist,varanio,id))
+        mysql.connection.commit()
+    
+    flash('Se actualizo el Album'+ varTitulo)
+    return redirect(url_for('index'))
 
 
 
