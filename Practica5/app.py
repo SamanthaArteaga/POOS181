@@ -70,16 +70,34 @@ def actualizar(id):
 
 
 
+@app.route('/mover/<id>')
+def mover(id):
+   cursorID=mysql.connection.cursor()
+   cursorID.execute('select * from dbalbums WHERE id = %s', (id))
+   consulID= cursorID.fetchone()
+   return render_template('ElimanarAlbum.html',album=consulID)
 
+@app.route('/Eliminar/<id>',methods=['POST'])
+def eliminar(id):
 
+    if request.method == 'POST':
+        eliTitulo=request.form['txtTitulo']
+        eliArtist=request.form['txtArtista']
+        elianio=request.form['txtAnio']
 
+        curEli= mysql.connection.cursor()
+        curEli.execute('delete from dbalbums  where id= %s',(id))
+        mysql.connection.commit()
 
-
-
-
-@app.route('/eliminar')
-def eliminar():
-    return"Se elimino en la BD"
+    if 'confirmar' in request.form: 
+            curEli = mysql.connection.cursor()
+            curEli.execute('DELETE FROM dbalbums WHERE id = %s', (id,))
+            mysql.connection.commit()
+            flash('Se eliminó de la BD: ' + eliTitulo)
+    else:
+            flash('No se eliminó el álbum: ' + eliTitulo)
+        
+    return redirect(url_for('index'))
 
 
 #Ejecución del Servidor en el puerto 5000

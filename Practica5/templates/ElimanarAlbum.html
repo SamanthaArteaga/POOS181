@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Albums</title>
+</head>
+<body>
+    <h1>Album a eliminar: </h1>
+    <br>
+    <br>
+    <form action="/Eliminar/{{album.0}}" method="POST">
+
+        <input type="text" name ="txtTitulo" value="{{album.1}}">
+        <input type="text" name="txtArtista" value="{{album.2}}">
+        <input type="number" name="txtAnio" value="{{album.3}}">
+
+        <button type="submit">Eliminar</button>
+
+        </form>
+        <h1>Eliminar Album</h1>
+    <p>¿Estás seguro de eliminar el álbum "{{ album[1] }}" de "{{ album[2] }}"?</p>
+    <form action="{{ url_for('eliminar', id=album[0]) }}" method="POST">
+        <input type="submit" name="confirmar" value="Sí">
+        <a href="{{ url_for('index') }}">No</a>
+    </form>
+
+</body>
+</html>
