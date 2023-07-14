@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen 2do Parcial</title>
+</head>
+<body>
+    <br>
+    <br>
+    <h1>Florería</h1>
+    <br>
+    
+
+    {% with mensajes= get_flashed_messages() %}
+       {% if mensajes %}
+           {% for msj in mensajes %}
+               <h3> {{ msj }} </h3>
+           {% endfor %}
+
+       {% endif %}
+    {% endwith %}
+
+    <br>
+    
+    <form action="/guardar" method="POST">
+        <input type="text" name ="txtNombre" placeholder="Escribe el nombre ">
+        <input type="text" name="txtCantidad" placeholder="Escribe la cantidad">
+        <input type="number" name="txtPrecio" placeholder="Escribe el precio">
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
