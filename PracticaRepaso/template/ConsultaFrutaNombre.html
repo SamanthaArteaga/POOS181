@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consulta de frutas por nombre</title>
+</head>
+<body>
+  <h2>Consulta de frutas por nombre</h2>
+  <form action="/consultar_nombre" method="POST">
+    <label for="nombre">Nombre de la fruta:</label>
+    <input type="text" name="nombre" id="nombre" required>
+    <input type="submit" value="Consultar">
+  </form>
+
+  {% if frutas %}
+    <h3>Resultados:</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Fruta</th>
+        <th>Temporada</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+      {% for fruta in frutas %}
+        <tr>
+          <td>{{ fruta.id }}</td>
+          <td>{{ fruta.fruta }}</td>
+          <td>{{ fruta.temporada }}</td>
+          <td>{{ fruta.precio }}</td>
+          <td>{{ fruta.stock }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>

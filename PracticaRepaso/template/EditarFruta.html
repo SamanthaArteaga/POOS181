@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edición de datos de fruta</title>
+</head>
+<body>
+  <h2>Ediciónde datos de fruta</h2>
+  <form action="/editar/{{ fruta.id }}" method="POST">
+    <label for="fruta">Fruta:</label>
+    <input type="text" name="fruta" id="fruta" value="{{ fruta.fruta }}" required><br><br>
+    <label for="temporada">Temporada:</label>
+    <input type="text" name="temporada" id="temporada" value="{{ fruta.temporada }}" required><br><br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" id="precio" step="0.01" value="{{ fruta.precio }}" required><br><br>
+    <label for="stock">Stock:</label>
+    <input type="number" name="stock" id="stock" value="{{ fruta.stock }}" required><br><br>
+    <input type="submit" value="Guardar cambios">
+  </form>
+</body>
+</html>

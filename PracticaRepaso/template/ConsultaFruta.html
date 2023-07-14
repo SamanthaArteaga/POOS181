@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consulta de frutas</title>
+</head>
+<body>
+  <h2>Consulta de frutas</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Fruta</th>
+      <th>Temporada</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Acciones</th>
+    </tr>
+    {% for fruta in frutas %}
+      <tr>
+        <td>{{ fruta.id }}</td>
+        <td>{{ fruta.fruta }}</td>
+        <td>{{ fruta.temporada }}</td>
+        <td>{{ fruta.precio }}</td>
+        <td>{{ fruta.stock }}</td>
+        <td>
+          <a href="/editar/{{ fruta.id }}">Editar</a>
+          <a href="/eliminar/{{ fruta.id }}">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

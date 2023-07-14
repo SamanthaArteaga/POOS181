@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ingreso de datos de frutas</title>
+</head>
+<body>
+  <h2>Ingreso de datos de frutas</h2>
+  <form action="/ingresar" method="POST">
+    <label for="fruta">Fruta:</label>
+    <input type="text" name="fruta" id="fruta" required><br><br>
+    <label for="temporada">Temporada:</label>
+    <input type="text" name="temporada" id="temporada" required><br><br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" id="precio" step="0.01" required><br><br>
+    <label for="stock">Stock:</label>
+    <input type="number" name="stock" id="stock" required><br><br>
+    <input type="submit" value="Guardar">
+  </form>
+</body>
+</html>
