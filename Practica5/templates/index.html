@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD ALUMNOS</title>
-</head>
-<body>
+{% extends 'plantilla.html' %}
+{% block body %}
+    
     <br>
     <br>
     <h1>Gestión de albums</h1>
@@ -56,9 +51,5 @@
     </tr>
     {% endfor %}
 </tbody>
-
 </table>
-
-
-</body>
-</html>
+    {% endblock %}
