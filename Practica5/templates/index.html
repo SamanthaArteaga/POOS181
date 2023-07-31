@@ -1,10 +1,9 @@
 {% extends 'plantilla.html' %}
 {% block body %}
     
-    <br>
-    <br>
-    <h1>Gestión de albums</h1>
-    <br>
+    <div class="mt-5 mb-5" >
+    <h1 class="display-1 text-center">Gestión de albums</h1>
+    </div>
 
     {% with mensajes= get_flashed_messages() %}
        {% if mensajes %}
@@ -15,41 +14,64 @@
        {% endif %}
     {% endwith %}
 
-    <br>
-    <form action="/guardar" method="POST">
-        <input type="text" name ="txtTitulo" placeholder="Escribe titulo ">
-        <input type="text" name="txtArtista" placeholder="Escribe artirta">
-        <input type="number" name="txtAnio" placeholder="Escribe año">
-        <button type="submit">Guardar</button>
-    </form>
-<br>
-<br>
-<h1>Albums Guardados</h1>
- 
-<table>
-    <thead>
-       <tr>
-          <td>ID: </td>
-          <td>Album: </td>
-          <td>Artista: </td>
-          <td>Año de Publicación: </td>
-       </tr>
+    <Div class="container">
+    <div class="row">
+        <div class="col-md-5">  
+            <div class="card card-body mb-5">
+                <form action="/guardar" method="POST">
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name ="txtTitulo" placeholder="Escribe titulo ">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="txtArtista" placeholder="Escribe artirta">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="number" class="form-control" name="txtAnio" placeholder="Escribe año">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-outline-success mt-2">Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h1>Albums Guardados</h1>
+                <table  class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID: </th>
+                            <th scope="col">Album: </th>
+                            <th scope="col">Artista: </th>
+                            <th scope="col">Año de Publicación: </th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                {% for alb in listAlbums%}
+                            <tr>
+                                <th scope="row">1</th>
+                                <th >{{alb.0}}</th>
+                                <th>{{alb.1}}</th>
+                                <th>{{alb.2}}</th>
+                                <th>{{alb.3}}</th>
+                <th>
+                <a href="/editar/{{alb.0}}"> Editar</a>
+                <a href="/mover/{{alb.0}}"> Borrar</a>
+                    </th>
+                </tr>
+                {% endfor %}
+                         </tbody>
+            </table>
+        </div>
+    </div>
+    </Div>
 
 
-    </thead>
-<tbody>
-    {% for alb in listAlbums%}
-    <tr>
-        <td>{{alb.0}}</td>
-        <td>{{alb.1}}</td>
-        <td>{{alb.2}}</td>
-        <td>{{alb.3}}</td>
-        <td> 
-            <a href="/editar/{{alb.0}}"> Editar</a>
-            <a href="/mover/{{alb.0}}"> Borrar</a>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
+    
     {% endblock %}
