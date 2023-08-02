@@ -46,58 +46,59 @@ def guardar():
     flash('El album fue agregado completamente')
     return redirect(url_for('index'))
 
+
 @app.route('/editar/<id>')
 def editar(id):
-   cursorID=mysql.connection.cursor()
-   cursorID.execute('select * from dbalbums where id= %s',(id))
-   consulID= cursorID.fetchone()
-   return render_template('EditarAlbum.html',album=consulID)
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM dbalbums WHERE id = %s', (id,))
+    album = cursor.fetchone()
+    cursor.close()
+    return render_template('EditarAlbum.html', album=album)
+        
+        
 
-@app.route('/Actualizar/<id>',methods=['POST'])
+@app.route('/Actualizar/<id>', methods=['POST'])
 def actualizar(id):
-
     if request.method == 'POST':
-        varTitulo=request.form['txtTitulo']
-        varArtist=request.form['txtArtista']
-        varanio=request.form['txtAnio']
+        varTitulo = request.form['txtTitulo']
+        varArtist = request.form['txtArtista']
+        varAnio = request.form['txtAnio']
 
-        curAct= mysql.connection.cursor()
-        curAct.execute('update dbalbums set titulo= %s, artista= %s, anio= %s where id= %s',(varTitulo,varArtist,varanio,id))
+        curAct = mysql.connection.cursor()
+        curAct.execute('UPDATE dbalbums SET titulo = %s, artista = %s, anio = %s WHERE id = %s', (varTitulo, varArtist, varAnio, id))
         mysql.connection.commit()
-    
-    flash('Se actualizo el Album'+ varTitulo)
+        curAct.close()
+        
+        flash('Album actualizado: ' + varTitulo)
     return redirect(url_for('index'))
-
 
 
 @app.route('/mover/<id>')
 def mover(id):
-   cursorID=mysql.connection.cursor()
-   cursorID.execute('select * from dbalbums WHERE id = %s', (id))
-   consulID= cursorID.fetchone()
-   return render_template('ElimanarAlbum.html',album=consulID)
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM dbalbums WHERE id = %s', (id,))
+    album = cursor.fetchone()
+    cursor.close()
+    return render_template('ElimanarAlbum.html', album=album)
 
-@app.route('/Eliminar/<id>',methods=['POST'])
+@app.route('/Eliminar/<id>', methods=['POST'])
 def eliminar(id):
-
     if request.method == 'POST':
-        eliTitulo=request.form['txtTitulo']
-        eliArtist=request.form['txtArtista']
-        elianio=request.form['txtAnio']
+        cur = mysql.connection.cursor()
 
-        curEli= mysql.connection.cursor()
-        curEli.execute('delete from dbalbums  where id= %s',(id))
-        mysql.connection.commit()
-
-    if 'confirmar' in request.form: 
-            curEli = mysql.connection.cursor()
-            curEli.execute('DELETE FROM dbalbums WHERE id = %s', (id,))
+        if 'confirmar' in request.form:
+            cur.execute('DELETE FROM dbalbums WHERE id = %s', (id,))
             mysql.connection.commit()
-            flash('Se eliminó de la BD: ' + eliTitulo)
-    else:
-            flash('No se eliminó el álbum: ' + eliTitulo)
+            flash('Se eliminó de la BD')
+        else:
+            flash('No se eliminó el álbum')
+
+        cur.close()
         
     return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 #Ejecución del Servidor en el puerto 5000

@@ -5,16 +5,25 @@
     <h1 class="display-1 text-center">Gestión de albums</h1>
     </div>
 
-    {% with mensajes= get_flashed_messages() %}
+    
+    <Div class="container">
+        {% with mensajes= get_flashed_messages() %}
        {% if mensajes %}
            {% for msj in mensajes %}
-               <h3> {{ msj }} </h3>
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{ msj }}  </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <script>Swal.fire(
+                'Good job!',
+                '{{ msj }}  ',
+                'success')
+              </script>
            {% endfor %}
 
        {% endif %}
     {% endwith %}
 
-    <Div class="container">
     <div class="row">
         <div class="col-md-5">  
             <div class="card card-body mb-5">
@@ -61,8 +70,8 @@
                                 <th>{{alb.2}}</th>
                                 <th>{{alb.3}}</th>
                 <th>
-                <a href="/editar/{{alb.0}}"> Editar</a>
-                <a href="/mover/{{alb.0}}"> Borrar</a>
+                    <a href="/editar/{{alb.0}}" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>
+                    <a href="/mover/{{alb.0}}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
                     </th>
                 </tr>
                 {% endfor %}
